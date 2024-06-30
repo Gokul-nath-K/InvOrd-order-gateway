@@ -1,0 +1,18 @@
+server:
+  port: 8382
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: order-gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: OrderService
+          predicates:
+            - Path=/order/**
+          uri: lb://OrderService
